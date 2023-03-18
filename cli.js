@@ -13,15 +13,13 @@ const app = require('./app.js');
             .positional('firstName', {
                 describe: 'first or only name of the character', 
                 // what about those character with number names?
-                type: 'string'
-                , 
+                type: 'string', 
             })
             .option('lastName', {
 
                 describe: 'last name of the character if they have one (not required)', 
                 // what about those character with number names?
-                type: 'string'
-                ,
+                type: 'string', 
             })
 
         }, 
@@ -30,13 +28,13 @@ const app = require('./app.js');
             // can put some if statements that if no last name do not add. 
             if(args.lastName !== undefined){
                 const fullName = args.firstName + '%20' + args.lastName; 
+                app.charcterInformation(fullName)
                 // console.log(fullName);
                 // console.log(args); 
-                // app.getCharacter(fullName);
+
             }
             else{
-                // console.log(args); 
-                // app.getCharacter(firstName);
+                app.charcterInformation(firstName);
             };  
 
         }
