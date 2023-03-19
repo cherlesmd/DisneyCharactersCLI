@@ -1,8 +1,7 @@
 const yargs = require('yargs/yargs');
 const process = require('process');
 
-const app = require('./app.js');
-const { positional } = require('yargs');
+const app = require('./app.js'); 
 
     yargs(process.argv.slice(2))
         .usage('$0 : Usage <command> [optional]')
@@ -14,27 +13,30 @@ const { positional } = require('yargs');
             .positional('firstName', {
                 describe: 'first or only name of the character', 
                 // what about those character with number names?
-                type: 'string'
-                , 
+                type: 'string', 
             })
-            .positional('lastName', {
+            .option('lastName', {
+
                 describe: 'last name of the character if they have one (not required)', 
                 // what about those character with number names?
-                type: 'string'
-                ,
+                type: 'string', 
             })
 
         }, 
         (args) => {
             // this gets the charcter's name
             // can put some if statements that if no last name do not add. 
-            console.log(args.firstName + ' ' + args.lastName); 
+            if(args.lastName !== undefined){
+                const fullName = args.firstName + '%20' + args.lastName; 
+                app.charcterInformation(fullName)
+                // console.log(fullName);
+                // console.log(args); 
+
+            }
+            else{
+                app.charcterInformation(firstName);
+            };  
 
         }
         // when they need help
         ).help().argv;  
-
-
-
-
-
