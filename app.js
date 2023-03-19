@@ -1,32 +1,29 @@
 const superagent = require('superagent');
+const prompts = require('prompts'); 
 const api = require('./api.js'); 
 
-const charcterInformation = async(args) => {
+//gets characters information based on argument, runs a prompt after searching to select character.
+const characterInformation = async(args) => {
     const characterName = args; 
-    const findChar = await api.characterByName(characterName); 
-    
-    
+    const findChar = await api.characterByName(characterName);
+    let choices = _selectCharacterPrompt(findChar);
 }; 
 
-module.exports = {
-    charcterInformation
-};
-
-charcterInformation('Lilo');
 
 // search prompt
-const prompts = require('prompts'); 
 // select from the list of characters based on their input
 const _selectCharacterPrompt = async (characters) => {
-    const displayCharacter = character.map((character) => {
-        return {name : `${character.name}`}
+    const displayCharacter = characters.map((character) => {
+        return {title : `${character.name}`}
     });
+
 
     return await prompts([
         {
             type: 'multiselect',
             name: 'characters',
             message: 'Select character',
+            choices: displayCharacter,
             validate:(selected) => {
                 const maxSelection = 1;
                 if (selected.length > maxSelection){
@@ -37,6 +34,10 @@ const _selectCharacterPrompt = async (characters) => {
                 }
             }
         }
-    ])
+    ]);
 
+};
+
+module.exports = {
+    characterInformation
 };

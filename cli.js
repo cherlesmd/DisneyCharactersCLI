@@ -1,5 +1,6 @@
 const yargs = require('yargs/yargs');
 const process = require('process');
+const api = require('./api.js'); 
 
 const app = require('./app.js'); 
 
@@ -26,15 +27,19 @@ const app = require('./app.js');
         (args) => {
             // this gets the charcter's name
             // can put some if statements that if no last name do not add. 
-            if(args.lastName !== undefined){
+            if(typeof args.firstName === 'string'){
+                // console.log(api.characterByName(args));
+                app.characterInformation(args.firstName);
+            }
+            else if(typeof args.lastName === 'string' ){
                 const fullName = args.firstName + '%20' + args.lastName; 
-                app.charcterInformation(fullName)
+                app.characterInformation(fullName)
                 // console.log(fullName);
                 // console.log(args); 
 
             }
             else{
-                app.charcterInformation(firstName);
+                app.characterInformation(firstName);
             };  
 
         }

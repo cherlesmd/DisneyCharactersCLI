@@ -11,7 +11,7 @@ const characterByName = async(name) => {
         const res = await superagent.get(filterURL); 
 
         // shows us the information about what the characers are associated with. 
-        console.log(res.body.data);
+        // console.log(res.body.data);
         return res.body.data;
     }
     catch(error){
