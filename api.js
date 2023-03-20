@@ -40,7 +40,7 @@ const logCharacter = async () => {
     }
 };
 
-logCharacter();
+//logCharacter();
 
 module.exports = {
     getWithId,
