@@ -5,7 +5,7 @@ const api = require('./api.js');
 //gets characters information based on argument, runs a prompt after searching to select character.
 const characterInformation = async(args) => {
     const characterName = args; 
-    const findChar = await api.characterByName(characterName);
+    const findChar = await api.getWithQuery(characterName);
     let choices = _selectCharacterPrompt(findChar);
 }; 
 

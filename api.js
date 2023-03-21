@@ -1,25 +1,48 @@
-const superagent = require('superagent'); 
-const baseURL = 'https://api.disneyapi.dev'; 
+const superagent = require('superagent');
+const base = 'https://api.disneyapi.dev';
 
-const characterByName = async(name) => {
-    try{
-        // if statement that if it has a space in the middle of the name then add %20
-        // we need to figure out if the name has a space? because we need to convert to %20
-        const filterURL = `${baseURL}/character?name=${name}`; 
-        // console.log(filterURL); 
+const getWithId = async (id) => {
+    // https://api.disneyapi.dev/characters/308
+    try {
+        const charUrl = `${base}/characters/${id}`;
+        const res = await superagent.get(charUrl);
 
-        const res = await superagent.get(filterURL); 
+        // returns character object with all detailed info
+        return res.body;
+    } catch (error) {
+        console.log(error);
+    }
+};
 
-        // shows us the information about what the characers are associated with. 
-        // console.log(res.body.data);
+const getWithQuery = async (query) => {
+    // https://api.disneyapi.dev/character?name=Mickey%20Mouse
+    try {
+        const charUrl = `${base}/character?name=${query}`;
+        const res = await superagent.get(charUrl);
+        
+        // returns array of all searches that match query
         return res.body.data;
+    } catch (error) {
+        console.log(error);
     }
-    catch(error){
-        console.log(error); 
+};
+
+const logCharacter = async () => {
+    // for testing
+    try {
+        const getBody = await getWithId(308);
+        const getQBody = await getWithQuery('Mickey Mouse');
+
+        console.log(getBody);
+        console.log(getQBody);
+    } catch (error) {
+        console.log(error);
     }
-    
-};  
+};
+
+//logCharacter();
 
 module.exports = {
-    characterByName
-}
+    getWithId,
+    getWithQuery
+};
