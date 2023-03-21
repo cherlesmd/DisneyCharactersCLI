@@ -4,6 +4,7 @@ const api = require('./api.js');
 
 //gets characters information based on argument, runs a prompt after searching to select character.
 const characterInformation = async(args) => {
+    // tried with misspelling, never loaded anything. Needs a try catch with async to throw error
     const characterName = args; 
     const findChar = await api.getWithQuery(characterName);
     let choices = _selectCharacterPrompt(findChar);
