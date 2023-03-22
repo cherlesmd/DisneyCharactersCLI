@@ -48,7 +48,7 @@ const _selectCharacterPrompt = async (characters) => {
     ]);
     // console.log(response.characters[0])
     //displays data for character
-    console.log(dataInformation(response.characters[0]));
+    console.log(dataInformation(response.characters));
 
 };
 
