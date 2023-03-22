@@ -15,7 +15,7 @@ const app = require('./app.js');
                 // what about those character with number names?
                 type: 'string', 
             })
-            .positional('lastName', {
+            .option('lastName', {
 
                 describe: 'last name of the character if they have one (not required)', 
                 // what about those character with number names?

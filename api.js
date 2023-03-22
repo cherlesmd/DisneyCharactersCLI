@@ -11,7 +11,13 @@ const characterByName = async(name) => {
         const res = await superagent.get(filterURL); 
 
         // shows us the information about what the characers are associated with. 
-        // console.log(res.body.data);
+      
+        // this is how we are able to get all the data inside the json file
+        const films = res.body.data.map(data => data['films']);
+        // shortFilms, tvShows, videoGames, parkAttractions, allies, enemies, imageUrl, url, 
+
+        
+        console.log(res.body.data); 
         return res.body.data;
     }
     catch(error){

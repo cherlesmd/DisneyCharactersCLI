@@ -7,7 +7,8 @@ const charcterInformation = async(args) => {
 
     const findChar = await api.characterByName(characterName);
 
-    let choices = await _selectCharacterPrompt(findChar); 
+    let selectedCharacter  = await _selectCharacterPrompt(findChar); 
+    
     
 }; 
 
@@ -20,14 +21,14 @@ const _selectCharacterPrompt = async (characters) => {
 
     return await prompts([
         {
-            type: 'multiselect',
+            type: 'select',
             name: 'characters',
             message: 'Select character',
             choices: displayCharacter,
             validate:(selected) => {
                 const maxSelection = 1;
                 if (selected.length > maxSelection){
-                    return `You may only select up to ${maxSelection} character`;
+                    return `You may only select 1 character`;
                 }
                 else{
                     return true;
