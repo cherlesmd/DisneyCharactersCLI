@@ -6,19 +6,30 @@ const api = require('./api.js');
 const characterInformation = async(args) => {
     const characterName = args; 
     const findChar = await api.getWithQuery(characterName);
-    let choices = _selectCharacterPrompt(findChar);
+    // let choices = _selectCharacterPrompt(findChar);
+    _selectCharacterPrompt(findChar);
+    
+
+    
 }; 
+
+const dataInformation = async(args) => {
+    const characterData = args;
+    const findData = await api.getWithQuery(characterData);
+    console.log(findData);
+}
+// console.log(dataInformation("donald"));
 
 
 // search prompt
 // select from the list of characters based on their input
 const _selectCharacterPrompt = async (characters) => {
     const displayCharacter = characters.map((character) => {
-        return {title : `${character.name}`}
+        return {title : `${character.name}`, value: character.name}
     });
 
 
-    return await prompts([
+    const response = await prompts([
         {
             type: 'multiselect',
             name: 'characters',
@@ -26,7 +37,7 @@ const _selectCharacterPrompt = async (characters) => {
             choices: displayCharacter,
             validate:(selected) => {
                 const maxSelection = 1;
-                if (selected.length > maxSelection){
+                if (selected > 1){
                     return `You may only select up to ${maxSelection} character`;
                 }
                 else{
@@ -35,6 +46,9 @@ const _selectCharacterPrompt = async (characters) => {
             }
         }
     ]);
+    // console.log(response.characters[0])
+    //displays data for character
+    console.log(dataInformation(response.characters[0]));
 
 };
 
