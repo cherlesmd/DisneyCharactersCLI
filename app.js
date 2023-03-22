@@ -7,8 +7,12 @@ const characterInformation = async(args) => {
     const characterName = args; 
     const findChar = await api.getWithQuery(characterName);
     // let choices = _selectCharacterPrompt(findChar);
+
+    // returns the data of the selected character
     const selectedChar = await _selectCharacterPrompt(findChar);
-    console.log(selectedChar);
+    
+    const idk = filterData(selectedChar); 
+
 }; 
 
 const dataInformation = async(args) => {
@@ -16,6 +20,18 @@ const dataInformation = async(args) => {
     const findData = await api.getWithId(characterData);
     return findData; 
 }
+
+
+const filterData = async (data) => {
+    const film = data.films; 
+
+    console.log("films: ")
+    film.forEach((f) => {
+        console.log(f); 
+    }) 
+}; 
+
+
 // console.log(dataInformation("donald"));
 
 
