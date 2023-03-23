@@ -13,6 +13,7 @@ const characterInformation = async(args) => {
     
     const idk = filterData(selectedChar); 
 
+
 }; 
 
 const dataInformation = async(args) => {
