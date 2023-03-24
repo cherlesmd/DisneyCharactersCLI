@@ -10,11 +10,12 @@ const characterInformation = async(args) => {
     // stored the data of the selected character in const
     const selectedChar = await _selectCharacterPrompt(findChar);
     // neatly displays data of selected character
-    const idk = filterData(selectedChar);
+    const displayChar = filterData(selectedChar);
      
     // call history function with key = characterName, value = count of how many in search result
     const saveQuery = history.saveSearch(characterName, findChar);
 }; 
+
 // Gets character information by id and returns information
 const dataInformation = async(args) => {
     const characterData = args;
