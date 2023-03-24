@@ -4,13 +4,14 @@ const api = require('./api.js');
 const history = require("./history.js");
 
 //gets character names based on argument, runs a prompt after searching to select character.
+// main function being called by cli.js
 const characterInformation = async(args) => {
     const characterName = args; 
     const findChar = await api.getWithQuery(characterName);
     // stored the data of the selected character in const
     const selectedChar = await _selectCharacterPrompt(findChar);
     // neatly displays data of selected character
-    const idk = filterData(selectedChar);
+    const displayData = filterData(selectedChar);
      
     // call history function with key = characterName, value = count of how many in search result
     const saveQuery = history.saveSearch(characterName, findChar);
