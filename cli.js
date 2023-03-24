@@ -28,14 +28,11 @@ const app = require('./app.js');
             // this gets the charcter's name
             // can put some if statements that if no last name do not add. 
             if(typeof args.firstName === 'string'){ 
-                // If we defines names as type string, no need to check if type string?
                 // console.log(api.characterByName(args));
                 app.characterInformation(args.firstName);
             }
-            // first if statement already checked first name and called app function
             else if(typeof args.lastName === 'string' ){
-                const fullName = args.firstName + '%20' + args.lastName; 
-                // search with query works without adding %20 also, optional to keep this
+                const fullName = args.firstName + '%20' + args.lastName;
                 app.characterInformation(fullName)
                 // console.log(fullName);
                 // console.log(args); 
@@ -44,7 +41,6 @@ const app = require('./app.js');
             else{
                 app.characterInformation(firstName);
             };  
-            // can skip if statements and directly call app function and send args or just first name
         }
         // when they need help
         ).help().argv;  
