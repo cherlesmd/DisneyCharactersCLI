@@ -1,4 +1,3 @@
-const superagent = require('superagent');
 const prompts = require('prompts'); 
 const api = require('./api.js'); 
 const history = require("./history.js");
@@ -12,11 +11,11 @@ const characterInformation = async(args) => {
     const selectedChar = await _selectCharacterPrompt(findChar);
     // neatly displays data of selected character
     
-    const displayChar = filterData(selectedChar);
+    filterData(selectedChar);
 
      
     // call history function with key = characterName, value = count of how many in search result
-    const saveQuery = history.saveSearch(characterName, findChar);
+    history.saveSearch(characterName, findChar);
 }; 
 
 // Gets character information by id and returns information
